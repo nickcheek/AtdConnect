@@ -1,7 +1,9 @@
 # API Wrapper for ATD 
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/nickcheek/atdconnect.svg?style=flat-square)](https://packagist.org/packages/nickcheek/atdconnect)
-
+[![Latest Stable Version](https://poser.pugx.org/nickcheek/atdconnect/v/stable)](https://packagist.org/packages/nickcheek/atdconnect)
+[![Latest Unstable Version](https://poser.pugx.org/nickcheek/atdconnect/v/unstable)](https://packagist.org/packages/nickcheek/atdconnect)
+[![License](https://poser.pugx.org/nickcheek/atdconnect/license)](https://packagist.org/packages/nickcheek/atdconnect)
+[![Total Downloads](https://poser.pugx.org/nickcheek/atdconnect/downloads)](https://packagist.org/packages/nickcheek/atdconnect)
 
 PHP Soap API wrapper that integrates WSS security in to the header of the soap call.
 
