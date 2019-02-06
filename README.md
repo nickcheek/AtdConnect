@@ -14,16 +14,40 @@ composer require nickcheek/atdconnect
 ```
 
 ## Usage
-
+Add the library to the top of your controller
 ``` php
-// Usage description here
+use \Nickcheek\Atdconnect\Atdconnect;
 ```
 
-### Testing
+declare your variables and make the call
+``` php
+$client = new Atdconnect($user,$password,$client);
+$response = $client->getStyle($location);
+echo "<pre>";
+var_dump($response); 
+echo "</pre>";
 
-``` bash
-composer test
 ```
+
+
+## Available Methods
+#### Location
+``` php
+getLocationByCriteria();
+getLocationCutoffTimes($location);
+getDistributionCenter($distributioncenter);
+```
+#### Brand
+``` php
+getBrand($location,$group);
+getStyle($location,$brand);
+```
+#### Products
+``` php
+getProdBrand($location,$group);
+```
+
+
 
 ### Changelog
 
