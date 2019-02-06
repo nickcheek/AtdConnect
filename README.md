@@ -1,11 +1,9 @@
-# Very short description of the package
+# API Wrapper for ATD 
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/nickcheek/atdconnect.svg?style=flat-square)](https://packagist.org/packages/nickcheek/atdconnect)
-[![Build Status](https://img.shields.io/travis/nickcheek/atdconnect/master.svg?style=flat-square)](https://travis-ci.org/nickcheek/atdconnect)
-[![Quality Score](https://img.shields.io/scrutinizer/g/nickcheek/atdconnect.svg?style=flat-square)](https://scrutinizer-ci.com/g/nickcheek/atdconnect)
-[![Total Downloads](https://img.shields.io/packagist/dt/nickcheek/atdconnect.svg?style=flat-square)](https://packagist.org/packages/nickcheek/atdconnect)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+
+PHP Soap API wrapper that integrates WSS security in to the header of the soap call.
 
 ## Installation
 
