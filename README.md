@@ -59,7 +59,20 @@ getOrderDetail();
 getOrderStatusByCriteria();
 ```
 
+### Todo
 
+- [x] getLocationByCriteria
+- [x] getLocationCutoffTimes
+- [x] getDistributionCenter
+- [x] getBrand(Brands)
+- [x] getStyle(Brands)
+- [x] getBrand(Products)
+- [ ] getProductByCriteria
+- [ ] getProductByKeyword
+- [ ] placeOrder
+- [ ] previewOrder
+- [ ] getOrderDetail
+- [ ] getOrderStatusByCriteria
 
 ### Changelog
 
