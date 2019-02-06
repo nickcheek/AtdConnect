@@ -8,10 +8,12 @@ class Atdconnect
 {
     
     public static $wsshead;
+    private static $statuswsdl		= 'https://testws.atdconnect.com/ws/3_4/orderStatus.wsdl';
+    private static $brandwsdl 		= 'https://testws.atdconnect.com/ws/3_4/brandstyles.wsdl';
+    private static $locationwsdl	= 'https://testws.atdconnect.com/ws/3_4/locations.wsdl';
+    private static $productwsdl 	= 'https://testws.atdconnect.com/ws/3_4/products.wsdl';
+    private static $orderwsdl		= 'https://testws.atdconnect.com/ws/3_4/orders.wsdl';
     
-    private static $brandwsdl = 'https://testws.atdconnect.com/ws/3_4/brandstyles.wsdl';
-    private static $locationwsdl = 'https://testws.atdconnect.com/ws/3_4/locations.wsdl';
-    private static $productwsdl = 'https://testws.atdconnect.com/ws/3_4/products.wsdl';
     
     public function __construct($user, $pass, $client)
     {
