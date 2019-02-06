@@ -4,6 +4,8 @@
 [![Latest Unstable Version](https://poser.pugx.org/nickcheek/atdconnect/v/unstable)](https://packagist.org/packages/nickcheek/atdconnect)
 [![License](https://poser.pugx.org/nickcheek/atdconnect/license)](https://packagist.org/packages/nickcheek/atdconnect)
 [![Total Downloads](https://poser.pugx.org/nickcheek/atdconnect/downloads)](https://packagist.org/packages/nickcheek/atdconnect)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nickcheek/AtdConnect/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nickcheek/AtdConnect/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/nickcheek/AtdConnect/badges/build.png?b=master)](https://scrutinizer-ci.com/g/nickcheek/AtdConnect/build-status/master)
 
 PHP Soap API wrapper that integrates WSS security in to the header of the soap call.
 
