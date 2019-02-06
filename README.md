@@ -71,12 +71,12 @@ getOrderStatusByCriteria();
 - [x] getBrand(Brands)
 - [x] getStyle(Brands)
 - [x] getBrand(Products)
-- [ ] getProductByCriteria
-- [ ] getProductByKeyword
-- [ ] placeOrder
-- [ ] previewOrder
-- [ ] getOrderDetail
-- [ ] getOrderStatusByCriteria
+- [x] getProductByCriteria
+- [x] getProductByKeyword
+- [x] placeOrder
+- [x] previewOrder
+- [x] getOrderDetail
+- [x] getOrderStatusByCriteria
 
 ### Changelog
 
