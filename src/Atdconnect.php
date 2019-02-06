@@ -105,6 +105,47 @@ class Atdconnect
 		 
 	   return $response; 
     }
-        
+    
+    public static function getProductByCriteria()
+    {
+	    
+    } 
+    
+    public static function getProductByKeyword()
+    {
+	    
+    }   
+    
+    //************************************************
+    //               Order Service
+    //************************************************
+    
+    public static function placeOrder()
+    {
+	    
+    } 
+    
+    public static function previewOrder()
+    {
+	    
+    } 
+    
+    //************************************************
+    //               Order Status Service
+    //************************************************
+    
+    public static function getOrderDetail()
+    {
+	    
+    } 
+    
+    public static function getOrderStatusByCriteria()
+    {
+	    
+    } 
+    
+    
+    
+    
     
 }

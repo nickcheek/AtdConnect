@@ -45,6 +45,18 @@ getStyle($location,$brand);
 #### Products
 ``` php
 getProdBrand($location,$group);
+getProductByCriteria();
+getProductByKeyword();
+```
+#### Orders
+``` php
+placeOrder();
+previewOrder();
+```
+#### Order Status
+``` php
+getOrderDetail();
+getOrderStatusByCriteria();
 ```
 
 
