@@ -122,42 +122,66 @@ class Atdconnect
         return $response;
     }
     
-    public static function getProductByCriteria()
+    public static function getProductByCriteria($search)
     {
+        $client = new \SoapClient(self::$productwsdl);
+        $client->__setSoapHeaders(self::$wsshead);
+        $response = $client->getProductByCriteria($search);
         
+        return $response;
     }
     
-    public static function getProductByKeyword()
+    public static function getProductByKeyword($search)
     {
+        $client = new \SoapClient(self::$productwsdl);
+        $client->__setSoapHeaders(self::$wsshead);
+        $response = $client->getProductByKeyword($search);
         
+        return $response;
     }
     
     //************************************************
     //               Order Service
     //************************************************
     
-    public static function placeOrder()
+    public static function placeOrder($order)
     {
+       $client = new \SoapClient(self::$orderwsdl);
+       $client->__setSoapHeaders(self::$wsshead);
+       $response = $client->placeOrder($order);
         
+       return $response; 
     }
     
-    public static function previewOrder()
+    public static function previewOrder($order)
     {
+       $client = new \SoapClient(self::$orderwsdl);
+       $client->__setSoapHeaders(self::$wsshead);
+       $response = $client->previewOrder($order);
         
+       return $response; 
     }
     
     //************************************************
     //               Order Status Service
     //************************************************
     
-    public static function getOrderDetail()
+    public static function getOrderDetail($status)
     {
+       $client = new \SoapClient(self::$statuswsdl);
+       $client->__setSoapHeaders(self::$wsshead);
+       $response = $client->getOrderDetail($status);
         
+       return $response; 
     }
     
-    public static function getOrderStatusByCriteria()
+    public static function getOrderStatusByCriteria($criteria)
     {
+       $client = new \SoapClient(self::$statuswsdl);
+       $client->__setSoapHeaders(self::$wsshead);
+       $response = $client->getOrderStatusByCriteria($criteria);
         
+       return $response; 
     }
     
     
