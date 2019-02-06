@@ -1,14 +1,23 @@
 {
     "name": "nickcheek/atdconnect",
     "description": "API Wrapper for ATD",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "Nick",
             "email": "nick@nicholascheek.com"
         }
     ],
+    "support": {
+        "email": "nick@nicholascheek.com",
+        "issues": "https://github.com/nickcheek/atdconnect/issues",
+        "Website": "https://nicholascheek.com",
+        "source": "https://github.com/nickcheek/atdconnect",
+        "docs": "https://github.com/nickcheek/AtdConnect/wiki"
+    },
     "minimum-stability": "dev",
     "require": {},
+    "license": "MIT",
     "autoload" : {
 	    "psr-4":{
 		    "Nickcheek\\Atdconnect\\": "src/"
