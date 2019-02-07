@@ -7,7 +7,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nickcheek/AtdConnect/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nickcheek/AtdConnect/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/nickcheek/AtdConnect/badges/build.png?b=master)](https://scrutinizer-ci.com/g/nickcheek/AtdConnect/build-status/master)
 
-PHP Soap API wrapper that integrates WSS security in to the header of the soap call.
+PHP Soap API wrapper for American Tire Distributor that integrates WSS security in to the header of the soap call.
 
 ## Installation
 
