@@ -4,20 +4,23 @@ namespace Nickcheek\Atdconnect;
 
 use SoapClient;
 
+
 class Atdconnect
 {
     
-    private static $wsshead;
+    public static $wsshead;
     private static $statuswsdl		= 'https://testws.atdconnect.com/ws/3_4/orderStatus.wsdl';
     private static $brandwsdl 		= 'https://testws.atdconnect.com/ws/3_4/brandstyles.wsdl';
     private static $locationwsdl	= 'https://testws.atdconnect.com/ws/3_4/locations.wsdl';
     private static $productwsdl 	= 'https://testws.atdconnect.com/ws/3_4/products.wsdl';
     private static $orderwsdl		= 'https://testws.atdconnect.com/ws/3_4/orders.wsdl';
     
+    protected static $location;
+    
     
     public function __construct()
     {
-    	$config = 'config/config.php';
+        $config = include('config/config.php');
         self::$wsshead = $this->getWSSHeader($config->user, $config->pass, $config->client);
     }
     
@@ -43,6 +46,17 @@ class Atdconnect
         return $response;
     }
     
+    public function setLocation($location)
+    {
+	    static::$location = $location;
+        return static::$location;
+    }
+    
+    public function getLocation()
+    {
+	    return static::$location;
+    }
+    
     //************************************************
     //               Location Service
     //************************************************
@@ -52,9 +66,9 @@ class Atdconnect
         return self::apiCall('getLocationByCriteria','',self::$locationwsdl);
     }
     
-    public static function getLocationCutoffTimes($location = '1213421')
+    public static function getLocationCutoffTimes()
     {
-        return self::apiCall('getLocationCutoffTimes',array('location' => $location),self::$locationwsdl);
+        return self::apiCall('getLocationCutoffTimes',['location' => static::$location],self::$locationwsdl);
     }
     
     public static function getDistributionCenter($dc = '059')
@@ -68,14 +82,14 @@ class Atdconnect
     //************************************************
     
     
-    public static function getBrand($location, $product = null)
+    public static function getBrand($product = null)
     {
-    	return self::apiCall('getBrand',array('locationNumber' => $location,'productGroup' => $product),self::$brandwsdl);
+    	return self::apiCall('getBrand',array('locationNumber' => static::$location,'productGroup' => $product),self::$brandwsdl);
     }
     
-    public static function getStyle($location, $brand = null)
+    public static function getStyle($brand = null)
     {
-    	return self::apiCall('getStyle',array('locationNumber' => $location,'brand' => $brand),self::$brandwsdl);
+    	return self::apiCall('getStyle',array('locationNumber' => static::$location,'brand' => $brand),self::$brandwsdl);
     }
     
     
@@ -86,9 +100,9 @@ class Atdconnect
     
     
     
-    public static function getProdBrand($location, $product = null)
+    public static function getProdBrand($product = null)
     {
-    	return self::apiCall('getProdBrand',array('locationNumber' => $location,'productGroup' => $product),self::$productwsdl);
+    	return self::apiCall('getProdBrand',array('locationNumber' => static::$location,'productGroup' => $product),self::$productwsdl);
     }
     
     public static function getProductByCriteria($search)

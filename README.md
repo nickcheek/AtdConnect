@@ -22,11 +22,18 @@ Add the library to the top of your controller
 ``` php
 use \Nickcheek\Atdconnect\Atdconnect;
 ```
-
-declare your variables and make the call
+Add the ATD credentials in config
 ``` php
-$client = new Atdconnect($user,$password,$client);
-$response = $client->getStyle($location);
+'client'=> 'client_name',
+'user'	=> 'your_username',
+'pass'	=> 'your_password' 
+```
+
+set your location and declare your variables
+``` php
+$client = new Atdconnect();
+$client->setLocation('your_location_id');
+$response = $client->getStyle();
 echo "<pre>";
 var_dump($response); 
 echo "</pre>";
@@ -38,17 +45,17 @@ echo "</pre>";
 #### Location
 ``` php
 getLocationByCriteria();
-getLocationCutoffTimes($location);
+getLocationCutoffTimes();
 getDistributionCenter($distributioncenter);
 ```
 #### Brand
 ``` php
-getBrand($location,$group);
-getStyle($location,$brand);
+getBrand($group);
+getStyle($brand);
 ```
 #### Products
 ``` php
-getProdBrand($location,$group);
+getProdBrand($group);
 getProductByCriteria();
 getProductByKeyword();
 ```
