@@ -7,7 +7,7 @@ use SoapClient;
 class Atdconnect
 {
     
-    public static $wsshead;
+    private static $wsshead;
     private static $statuswsdl		= 'https://testws.atdconnect.com/ws/3_4/orderStatus.wsdl';
     private static $brandwsdl 		= 'https://testws.atdconnect.com/ws/3_4/brandstyles.wsdl';
     private static $locationwsdl	= 'https://testws.atdconnect.com/ws/3_4/locations.wsdl';
@@ -34,7 +34,13 @@ class Atdconnect
         return new \SoapHeader('http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd', 'Security', new \SoapVar($xml, XSD_ANYXML), true);
     }
     
-    
+    public static function apiCall($call,$query,$service)
+    {
+        $client     = new \SoapClient($service);
+        $client->__setSoapHeaders(self::$wsshead);
+        $response 	= $client->$call($query);
+        return $response;
+    }
     
     //************************************************
     //               Location Service
@@ -42,37 +48,20 @@ class Atdconnect
     
     public static function getLocationByCriteria()
     {
-        
-        $client = new \SoapClient(self::$locationwsdl);
-        $client->__setSoapHeaders(self::$wsshead);
-        $response = $client->getLocationByCriteria();
-        
-        return $response;
+        return self::apiCall('getLocationByCriteria','',self::$locationwsdl);
     }
     
     public static function getLocationCutoffTimes($location = '1213421')
     {
-        
-        $client = new \SoapClient(self::$locationwsdl);
-        $client->__setSoapHeaders(self::$wsshead);
-        $response = $client->getLocationCutoffTimes(array(
-            'location' => $location
-        ));
-        
-        return $response;
+        return self::apiCall('getLocationCutoffTimes',array('location' => $location),self::$locationwsdl);
     }
     
     public static function getDistributionCenter($dc = '059')
     {
-        $client = new \SoapClient(self::$locationwsdl);
-        $client->__setSoapHeaders(self::$wsshead);
-        $response = $client->getDistributionCenter(array(
-            'servicingDC' => $dc
-        ));
-        
-        return $response;
+        return self::apiCall('getDistributionCenter',array('servicingDC' => $dc),self::$locationwsdl);
     }
     
+        
     //************************************************
     //               Brand Styles Service
     //************************************************
@@ -80,26 +69,12 @@ class Atdconnect
     
     public static function getBrand($location, $product = null)
     {
-        $client = new \SoapClient(self::$brandwsdl);
-        $client->__setSoapHeaders(self::$wsshead);
-        $response = $client->getBrand(array(
-            'locationNumber' => $location,
-            'productGroup' => $product
-        ));
-        
-        return $response;
+    	return self::apiCall('getBrand',array('locationNumber' => $location,'productGroup' => $product),self::$brandwsdl);
     }
     
     public static function getStyle($location, $brand = null)
     {
-        $client = new \SoapClient(self::$brandwsdl);
-        $client->__setSoapHeaders(self::$wsshead);
-        $response = $client->getBrand(array(
-            'locationNumber' => $location,
-            'brand' => $brand
-        ));
-        
-        return $response;
+    	return self::apiCall('getStyle',array('locationNumber' => $location,'brand' => $brand),self::$brandwsdl);
     }
     
     
@@ -112,32 +87,17 @@ class Atdconnect
     
     public static function getProdBrand($location, $product = null)
     {
-        $client = new \SoapClient(self::$productwsdl);
-        $client->__setSoapHeaders(self::$wsshead);
-        $response = $client->getBrand(array(
-            'locationNumber' => $location,
-            'productGroup' => $product
-        ));
-        
-        return $response;
+    	return self::apiCall('getProdBrand',array('locationNumber' => $location,'productGroup' => $product),self::$productwsdl);
     }
     
     public static function getProductByCriteria($search)
     {
-        $client = new \SoapClient(self::$productwsdl);
-        $client->__setSoapHeaders(self::$wsshead);
-        $response = $client->getProductByCriteria($search);
-        
-        return $response;
+        return self::apiCall('getProductByCriteria',$search,self::$productwsdl);
     }
     
     public static function getProductByKeyword($search)
     {
-        $client = new \SoapClient(self::$productwsdl);
-        $client->__setSoapHeaders(self::$wsshead);
-        $response = $client->getProductByKeyword($search);
-        
-        return $response;
+        return self::apiCall('getProductByKeyword',$search,self::$productwsdl);
     }
     
     //************************************************
@@ -146,20 +106,12 @@ class Atdconnect
     
     public static function placeOrder($order)
     {
-       $client = new \SoapClient(self::$orderwsdl);
-       $client->__setSoapHeaders(self::$wsshead);
-       $response = $client->placeOrder($order);
-        
-       return $response; 
+        return self::apiCall('placeOrder',$order,self::$orderwsdl);
     }
     
     public static function previewOrder($order)
     {
-       $client = new \SoapClient(self::$orderwsdl);
-       $client->__setSoapHeaders(self::$wsshead);
-       $response = $client->previewOrder($order);
-        
-       return $response; 
+        return self::apiCall('previewOrder',$order,self::$orderwsdl);
     }
     
     //************************************************
@@ -168,20 +120,12 @@ class Atdconnect
     
     public static function getOrderDetail($status)
     {
-       $client = new \SoapClient(self::$statuswsdl);
-       $client->__setSoapHeaders(self::$wsshead);
-       $response = $client->getOrderDetail($status);
-        
-       return $response; 
+        return self::apiCall('getOrderDetail',$status,self::$statuswsdl);
     }
     
     public static function getOrderStatusByCriteria($criteria)
     {
-       $client = new \SoapClient(self::$statuswsdl);
-       $client->__setSoapHeaders(self::$wsshead);
-       $response = $client->getOrderStatusByCriteria($criteria);
-        
-       return $response; 
+        return self::apiCall('getOrderStatusByCriteria',$status,self::$statuswsdl);
     }
     
     
