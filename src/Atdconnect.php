@@ -15,9 +15,10 @@ class Atdconnect
     private static $orderwsdl		= 'https://testws.atdconnect.com/ws/3_4/orders.wsdl';
     
     
-    public function __construct($user, $pass, $client)
+    public function __construct()
     {
-        self::$wsshead = $this->getWSSHeader($user, $pass, $client);
+    	$config = 'config/config.php';
+        self::$wsshead = $this->getWSSHeader($config->user, $config->pass, $config->client);
     }
     
     public static function getWSSHeader($user, $pass, $client)
