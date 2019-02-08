@@ -3,12 +3,12 @@
 namespace Nickcheek\Atdconnect;
 
 use SoapClient;
-
+use Nickcheek\Atdconnect\Arraybuilder;
 
 class Atdconnect
 {
     
-    public static $wsshead;
+    private static $wsshead;
     private static $statuswsdl		= 'https://testws.atdconnect.com/ws/3_4/orderStatus.wsdl';
     private static $brandwsdl 		= 'https://testws.atdconnect.com/ws/3_4/brandstyles.wsdl';
     private static $locationwsdl	= 'https://testws.atdconnect.com/ws/3_4/locations.wsdl';
@@ -59,6 +59,26 @@ class Atdconnect
 	    return static::$location;
     }
     
+    public function setKeywordSearch($word)
+    {
+	    $search = new Arraybuilder();
+	    return $search->setKeywordSearch($word);
+    }
+    
+    public function setATDProductNumber($number)
+    {
+	    $search = new Arraybuilder();
+	    return $search->setATDProductNumber($number);
+    }
+    
+    
+    public function setSizeSearch($size)
+    {
+	    $search = new Arraybuilder();
+	    return $search->setSizeSearch($size);
+    }
+
+    
     //************************************************
     //               Location Service
     //************************************************
@@ -78,9 +98,11 @@ class Atdconnect
         return self::apiCall('getDistributionCenter',array('servicingDC' => $dc),self::$locationwsdl);
     }
     
+        
     //************************************************
     //               Brand Styles Service
     //************************************************
+    
     
     public static function getBrand($product = null)
     {
@@ -96,6 +118,9 @@ class Atdconnect
     //************************************************
     //               Products Service
     //************************************************
+    
+    
+    
     
     public static function getProdBrand($product = null)
     {
