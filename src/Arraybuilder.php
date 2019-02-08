@@ -59,7 +59,7 @@ class Arraybuilder
 				)
 			)
 		);
-        return static::$keyword;
+        return static::$search;
     }
     
     public function setATDProductNumber($number)
