@@ -1,7 +1,8 @@
 <?php
 
 	return (object) [
-		'client'=> '',
-		'user'	=> '',
-		'pass'	=> '' 
+		'client'	=>	'your_clientname',
+		'user'		=>	'your_username',
+		'pass'		=>	'your_password',
+		'location'	=>	'location_number' 
 	];

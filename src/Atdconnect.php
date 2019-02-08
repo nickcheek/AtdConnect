@@ -22,6 +22,8 @@ class Atdconnect
     {
         $config = include('config/config.php');
         self::$wsshead = $this->getWSSHeader($config->user, $config->pass, $config->client);
+        self::$location = $config->location;
+       
     }
     
     public static function getWSSHeader($user, $pass, $client)
@@ -68,7 +70,7 @@ class Atdconnect
     
     public static function getLocationCutoffTimes()
     {
-        return self::apiCall('getLocationCutoffTimes',['location' => static::$location],self::$locationwsdl);
+        return self::apiCall('getLocationCutoffTimes',['location' => self::$location],self::$locationwsdl);
     }
     
     public static function getDistributionCenter($dc = '059')
@@ -76,11 +78,9 @@ class Atdconnect
         return self::apiCall('getDistributionCenter',array('servicingDC' => $dc),self::$locationwsdl);
     }
     
-        
     //************************************************
     //               Brand Styles Service
     //************************************************
-    
     
     public static function getBrand($product = null)
     {
@@ -96,9 +96,6 @@ class Atdconnect
     //************************************************
     //               Products Service
     //************************************************
-    
-    
-    
     
     public static function getProdBrand($product = null)
     {
