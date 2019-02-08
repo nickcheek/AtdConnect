@@ -37,6 +37,13 @@ $response = $client->getStyle('goodyear');
 return $response
 
 ```
+You can also use the array builder functions
+``` php
+$client = new Atdconnect();
+$search = $client->setSizeSearch('3055520');
+return $client->getProductByCriteria($search);
+```
+
 
 ## Available Methods
 #### Location
