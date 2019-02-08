@@ -26,20 +26,17 @@ Add the ATD credentials in config
 ``` php
 'client'=> 'client_name',
 'user'	=> 'your_username',
-'pass'	=> 'your_password' 
+'pass'	=> 'your_password',
+'location => 'your_location_id' 
 ```
 
 set your location and declare your variables
 ``` php
 $client = new Atdconnect();
-$client->setLocation('your_location_id');
-$response = $client->getStyle();
-echo "<pre>";
-var_dump($response); 
-echo "</pre>";
+$response = $client->getStyle('goodyear');
+return $response
 
 ```
-
 
 ## Available Methods
 #### Location
@@ -69,21 +66,6 @@ previewOrder();
 getOrderDetail();
 getOrderStatusByCriteria();
 ```
-
-### Todo
-
-- [x] getLocationByCriteria
-- [x] getLocationCutoffTimes
-- [x] getDistributionCenter
-- [x] getBrand(Brands)
-- [x] getStyle(Brands)
-- [x] getBrand(Products)
-- [x] getProductByCriteria
-- [x] getProductByKeyword
-- [x] placeOrder
-- [x] previewOrder
-- [x] getOrderDetail
-- [x] getOrderStatusByCriteria
 
 ### Changelog
 
