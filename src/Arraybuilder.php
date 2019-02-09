@@ -4,20 +4,20 @@ namespace Nickcheek\Atdconnect;
 
 class Arraybuilder
 {
-	public static $search;
-	public static $location;
+	public  $search;
+	public  $location;
 
 	public function __construct()
 	{
 		$config = include('config/config.php');
-        self::$location = $config->location;
+        $this->$location = $config->location;
 
 	}
 
 	public function setSizeSearch($size)
     {
-	    static::$search = array(
-			'locationNumber' => static::$location,
+	    $this->$search = array(
+			'locationNumber' => $this->$location,
 			'criteria' => array(
 				'entry' => array(
 					'key'=> 'Size',
@@ -43,13 +43,13 @@ class Arraybuilder
 				'includeRebates'=>'1'
 			)
 		);
-        return static::$search;
+        return $this->$search;
     }
     
     public function setKeywordSearch($word)
     {
-	    static::$search = array(
-			'locationNumber' => static::$location,
+	    $this->$search = array(
+			'locationNumber' => $this->$location,
 			'keywords' => $word,
 			'options' => array(
 				'images' => array(
@@ -59,13 +59,13 @@ class Arraybuilder
 				)
 			)
 		);
-        return static::$search;
+        return $this->$search;
     }
     
     public function setATDProductNumber($number)
     {
-	    static::$search = array(
-			'locationNumber' => static::$location,
+	    $this->$search = array(
+			'locationNumber' => $this->$location,
 			'criteria' => array(
 				'entry'=>array(
 					'key'=>'ATDProductNumber',
@@ -89,7 +89,7 @@ class Arraybuilder
 				)
 					
 		);
-        return static::$search;
+        return $this->$search;
     }
     
     

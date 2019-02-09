@@ -8,25 +8,25 @@ use Nickcheek\Atdconnect\Arraybuilder;
 class Atdconnect
 {
     
-    private static $wsshead;
-    private static $statuswsdl		= 'https://testws.atdconnect.com/ws/3_4/orderStatus.wsdl';
-    private static $brandwsdl 		= 'https://testws.atdconnect.com/ws/3_4/brandstyles.wsdl';
-    private static $locationwsdl	= 'https://testws.atdconnect.com/ws/3_4/locations.wsdl';
-    private static $productwsdl 	= 'https://testws.atdconnect.com/ws/3_4/products.wsdl';
-    private static $orderwsdl		= 'https://testws.atdconnect.com/ws/3_4/orders.wsdl';
+    private  $wsshead;
+    private  $statuswsdl		= 'https://testws.atdconnect.com/ws/3_4/orderStatus.wsdl';
+    private  $brandwsdl 		= 'https://testws.atdconnect.com/ws/3_4/brandstyles.wsdl';
+    private  $locationwsdl	= 'https://testws.atdconnect.com/ws/3_4/locations.wsdl';
+    private  $productwsdl 	= 'https://testws.atdconnect.com/ws/3_4/products.wsdl';
+    private  $orderwsdl		= 'https://testws.atdconnect.com/ws/3_4/orders.wsdl';
     
-    protected static $location;
+    protected  $location;
     
     
     public function __construct()
     {
         $config = include('config/config.php');
-        self::$wsshead = $this->getWSSHeader($config->user, $config->pass, $config->client);
-        self::$location = $config->location;
+        $this->$wsshead = $this->getWSSHeader($config->user, $config->pass, $config->client);
+        $this->$location = $config->location;
        
     }
     
-    public static function getWSSHeader($user, $pass, $client)
+    public  function getWSSHeader($user, $pass, $client)
     {
         $xml = '
 		<wsse:Security SOAP-ENV:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
@@ -40,23 +40,23 @@ class Atdconnect
         return new \SoapHeader('http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd', 'Security', new \SoapVar($xml, XSD_ANYXML), true);
     }
     
-    public static function apiCall($call,$query,$service)
+    public  function apiCall($call,$query,$service)
     {
         $client     = new \SoapClient($service);
-        $client->__setSoapHeaders(self::$wsshead);
+        $client->__setSoapHeaders($this->$wsshead);
         $response 	= $client->$call($query);
         return $response;
     }
     
     public function setLocation($location)
     {
-	    static::$location = $location;
-        return static::$location;
+	    ::$location = $location;
+        return ::$location;
     }
     
     public function getLocation()
     {
-	    return static::$location;
+	    return ::$location;
     }
     
     public function setKeywordSearch($word)
@@ -83,19 +83,19 @@ class Atdconnect
     //               Location Service
     //************************************************
     
-    public static function getLocationByCriteria()
+    public  function getLocationByCriteria()
     {
-        return self::apiCall('getLocationByCriteria','',self::$locationwsdl);
+        return $this->apiCall('getLocationByCriteria','',$this->$locationwsdl);
     }
     
-    public static function getLocationCutoffTimes()
+    public  function getLocationCutoffTimes()
     {
-        return self::apiCall('getLocationCutoffTimes',['location' => self::$location],self::$locationwsdl);
+        return $this->apiCall('getLocationCutoffTimes',['location' => $this->$location],$this->$locationwsdl);
     }
     
-    public static function getDistributionCenter($dc = '059')
+    public  function getDistributionCenter($dc = '059')
     {
-        return self::apiCall('getDistributionCenter',array('servicingDC' => $dc),self::$locationwsdl);
+        return $this->apiCall('getDistributionCenter',array('servicingDC' => $dc),$this->$locationwsdl);
     }
     
         
@@ -104,14 +104,14 @@ class Atdconnect
     //************************************************
     
     
-    public static function getBrand($product = null)
+    public  function getBrand($product = null)
     {
-    	return self::apiCall('getBrand',array('locationNumber' => static::$location,'productGroup' => $product),self::$brandwsdl);
+    	return $this->apiCall('getBrand',array('locationNumber' => ::$location,'productGroup' => $product),$this->$brandwsdl);
     }
     
-    public static function getStyle($brand = null)
+    public  function getStyle($brand = null)
     {
-    	return self::apiCall('getStyle',array('locationNumber' => static::$location,'brand' => $brand),self::$brandwsdl);
+    	return $this->apiCall('getStyle',array('locationNumber' => ::$location,'brand' => $brand),$this->$brandwsdl);
     }
     
     
@@ -122,47 +122,47 @@ class Atdconnect
     
     
     
-    public static function getProdBrand($product = null)
+    public  function getProdBrand($product = null)
     {
-    	return self::apiCall('getProdBrand',array('locationNumber' => static::$location,'productGroup' => $product),self::$productwsdl);
+    	return $this->apiCall('getProdBrand',array('locationNumber' => ::$location,'productGroup' => $product),$this->$productwsdl);
     }
     
-    public static function getProductByCriteria($search)
+    public  function getProductByCriteria($search)
     {
-        return self::apiCall('getProductByCriteria',$search,self::$productwsdl);
+        return $this->apiCall('getProductByCriteria',$search,$this->$productwsdl);
     }
     
-    public static function getProductByKeyword($search)
+    public  function getProductByKeyword($search)
     {
-        return self::apiCall('getProductByKeyword',$search,self::$productwsdl);
+        return $this->apiCall('getProductByKeyword',$search,$this->$productwsdl);
     }
     
     //************************************************
     //               Order Service
     //************************************************
     
-    public static function placeOrder($order)
+    public  function placeOrder($order)
     {
-        return self::apiCall('placeOrder',$order,self::$orderwsdl);
+        return $this->apiCall('placeOrder',$order,$this->$orderwsdl);
     }
     
-    public static function previewOrder($order)
+    public  function previewOrder($order)
     {
-        return self::apiCall('previewOrder',$order,self::$orderwsdl);
+        return $this->apiCall('previewOrder',$order,$this->$orderwsdl);
     }
     
     //************************************************
     //               Order Status Service
     //************************************************
     
-    public static function getOrderDetail($status)
+    public  function getOrderDetail($status)
     {
-        return self::apiCall('getOrderDetail',$status,self::$statuswsdl);
+        return $this->apiCall('getOrderDetail',$status,$this->$statuswsdl);
     }
     
-    public static function getOrderStatusByCriteria($criteria)
+    public  function getOrderStatusByCriteria($criteria)
     {
-        return self::apiCall('getOrderStatusByCriteria',$status,self::$statuswsdl);
+        return $this->apiCall('getOrderStatusByCriteria',$status,$this->$statuswsdl);
     }
     
     
