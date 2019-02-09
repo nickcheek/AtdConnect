@@ -162,7 +162,7 @@ class Atdconnect
     
     public  function getOrderStatusByCriteria($criteria)
     {
-        return $this->apiCall('getOrderStatusByCriteria',$status,$this->statuswsdl);
+        return $this->apiCall('getOrderStatusByCriteria',$criteria,$this->statuswsdl);
     }
     
     
