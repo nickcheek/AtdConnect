@@ -8,22 +8,22 @@ use Nickcheek\Atdconnect\Arraybuilder;
 class Atdconnect
 {
     
-    private  $wsshead;
-    private  $statuswsdl		= 'https://testws.atdconnect.com/ws/3_4/orderStatus.wsdl';
-    private  $brandwsdl 		= 'https://testws.atdconnect.com/ws/3_4/brandstyles.wsdl';
-    private  $locationwsdl	= 'https://testws.atdconnect.com/ws/3_4/locations.wsdl';
-    private  $productwsdl 	= 'https://testws.atdconnect.com/ws/3_4/products.wsdl';
-    private  $orderwsdl		= 'https://testws.atdconnect.com/ws/3_4/orders.wsdl';
+    private $wsshead;
+    protected $location;
+    private $statuswsdl		= 'https://testws.atdconnect.com/ws/3_4/orderStatus.wsdl';
+    private $brandwsdl 		= 'https://testws.atdconnect.com/ws/3_4/brandstyles.wsdl';
+    private $locationwsdl	= 'https://testws.atdconnect.com/ws/3_4/locations.wsdl';
+    private $productwsdl 	= 'https://testws.atdconnect.com/ws/3_4/products.wsdl';
+    private $orderwsdl		= 'https://testws.atdconnect.com/ws/3_4/orders.wsdl';
     
-    protected  $location;
+    
     
     
     public function __construct()
     {
         $config = include('config/config.php');
-        $this->$wsshead = $this->getWSSHeader($config->user, $config->pass, $config->client);
-        $this->$location = $config->location;
-       
+        $this->wsshead = $this->getWSSHeader($config->user, $config->pass, $config->client);
+        $this->location = $config->location;
     }
     
     public  function getWSSHeader($user, $pass, $client)
@@ -43,20 +43,20 @@ class Atdconnect
     public  function apiCall($call,$query,$service)
     {
         $client     = new \SoapClient($service);
-        $client->__setSoapHeaders($this->$wsshead);
+        $client->__setSoapHeaders($this->wsshead);
         $response 	= $client->$call($query);
         return $response;
     }
     
     public function setLocation($location)
     {
-	    ::$location = $location;
-        return ::$location;
+	    $this->location = $location;
+        return $this->location;
     }
     
     public function getLocation()
     {
-	    return ::$location;
+	    return $this->location;
     }
     
     public function setKeywordSearch($word)
@@ -85,17 +85,17 @@ class Atdconnect
     
     public  function getLocationByCriteria()
     {
-        return $this->apiCall('getLocationByCriteria','',$this->$locationwsdl);
+        return $this->apiCall('getLocationByCriteria','',$this->locationwsdl);
     }
     
     public  function getLocationCutoffTimes()
     {
-        return $this->apiCall('getLocationCutoffTimes',['location' => $this->$location],$this->$locationwsdl);
+        return $this->apiCall('getLocationCutoffTimes',['location' => $this->location],$this->locationwsdl);
     }
     
     public  function getDistributionCenter($dc = '059')
     {
-        return $this->apiCall('getDistributionCenter',array('servicingDC' => $dc),$this->$locationwsdl);
+        return $this->apiCall('getDistributionCenter',array('servicingDC' => $dc),$this->locationwsdl);
     }
     
         
@@ -106,12 +106,12 @@ class Atdconnect
     
     public  function getBrand($product = null)
     {
-    	return $this->apiCall('getBrand',array('locationNumber' => ::$location,'productGroup' => $product),$this->$brandwsdl);
+    	return $this->apiCall('getBrand',array('locationNumber' => $this->location,'productGroup' => $product),$this->brandwsdl);
     }
     
     public  function getStyle($brand = null)
     {
-    	return $this->apiCall('getStyle',array('locationNumber' => ::$location,'brand' => $brand),$this->$brandwsdl);
+    	return $this->apiCall('getStyle',array('locationNumber' => $this->location,'brand' => $brand),$this->brandwsdl);
     }
     
     
@@ -124,17 +124,17 @@ class Atdconnect
     
     public  function getProdBrand($product = null)
     {
-    	return $this->apiCall('getProdBrand',array('locationNumber' => ::$location,'productGroup' => $product),$this->$productwsdl);
+    	return $this->apiCall('getProdBrand',array('locationNumber' => $this->location,'productGroup' => $product),$this->productwsdl);
     }
     
     public  function getProductByCriteria($search)
     {
-        return $this->apiCall('getProductByCriteria',$search,$this->$productwsdl);
+        return $this->apiCall('getProductByCriteria',$search,$this->productwsdl);
     }
     
     public  function getProductByKeyword($search)
     {
-        return $this->apiCall('getProductByKeyword',$search,$this->$productwsdl);
+        return $this->apiCall('getProductByKeyword',$search,$this->productwsdl);
     }
     
     //************************************************
@@ -143,12 +143,12 @@ class Atdconnect
     
     public  function placeOrder($order)
     {
-        return $this->apiCall('placeOrder',$order,$this->$orderwsdl);
+        return $this->apiCall('placeOrder',$order,$this->orderwsdl);
     }
     
     public  function previewOrder($order)
     {
-        return $this->apiCall('previewOrder',$order,$this->$orderwsdl);
+        return $this->apiCall('previewOrder',$order,$this->orderwsdl);
     }
     
     //************************************************
@@ -157,12 +157,12 @@ class Atdconnect
     
     public  function getOrderDetail($status)
     {
-        return $this->apiCall('getOrderDetail',$status,$this->$statuswsdl);
+        return $this->apiCall('getOrderDetail',$status,$this->statuswsdl);
     }
     
     public  function getOrderStatusByCriteria($criteria)
     {
-        return $this->apiCall('getOrderStatusByCriteria',$status,$this->$statuswsdl);
+        return $this->apiCall('getOrderStatusByCriteria',$status,$this->statuswsdl);
     }
     
     
