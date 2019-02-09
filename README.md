@@ -33,7 +33,8 @@ Add the ATD credentials in config
 set your location and declare your variables
 ``` php
 $client = new Atdconnect();
-$response = $client->getStyle('goodyear');
+$brand = $client->Brand();
+$response = $brand->getStyle('goodyear');
 return $response
 
 ```
@@ -41,7 +42,8 @@ You can also use the array builder functions
 ``` php
 $client = new Atdconnect();
 $search = $client->setSizeSearch('3055520');
-return $client->getProductByCriteria($search);
+$product = $client->Product();
+return $product->getProductByCriteria($search);
 ```
 
 
@@ -63,12 +65,12 @@ getProdBrand($group);
 getProductByCriteria();
 getProductByKeyword();
 ```
-#### Orders
+#### Order
 ``` php
 placeOrder();
 previewOrder();
 ```
-#### Order Status
+#### Status
 ``` php
 getOrderDetail();
 getOrderStatusByCriteria();
