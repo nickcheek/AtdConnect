@@ -13,16 +13,16 @@ trait ApiTrait {
         private $client;
     
     
-        public  function apiCall($call,$query,$service)
+        public  function apiCall($call, $query, $service)
         {
-                $config = include(realpath(dirname(__FILE__) . '/../config/config.php'));
+                $config = include(realpath(dirname(__FILE__).'/../config/config.php'));
     	
                 $this->user = $config->user;
                 $this->pass = $config->pass;
                 $this->client = $config->client;
                 $this->wsshead = $this->getWSSHeader();
     	
-        $client     = new \SoapClient($service);
+        $client = new \SoapClient($service);
         $client->__setSoapHeaders($this->wsshead);
         $response = $client->$call($query);
         return $response;
