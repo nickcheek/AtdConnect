@@ -3,14 +3,14 @@
 namespace Nickcheek\Atdconnect\Services;
 
 class Product {
-	use Nickcheek\Atdconnect\Traits;
+	use \Nickcheek\Atdconnect\Traits\ApiTrait;
 	
 	private $location;
 	private $wsdl;
 
 	public function __construct()
 	{
-	    $config = include('config/config.php');
+	    $config = include(realpath(dirname(__FILE__) . '/../config/config.php'));
 	    $this->location = $config->location;
 		$this->wsdl = 'https://testws.atdconnect.com/ws/3_4/products.wsdl';
 	}

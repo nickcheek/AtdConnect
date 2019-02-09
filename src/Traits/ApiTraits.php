@@ -6,16 +6,19 @@ use SoapClient;
 
 trait ApiTrait {
 
-	public function __construct(){
-		$config = include('config/config.php');
-        $this->wsshead = $this->getWSSHeader($config->user, $config->pass, $config->client);
-	}
+	private $config; 
+	private $wsshead;
+    
 
-    public function ApiCall($call,$query) {
-        $client = new SoapClient($this->wsdl_path, $this->params);
-        $response = $client->$call($query);
+    public  function apiCall($call,$query,$service)
+    {
+    	$config = include(realpath(dirname(__FILE__) . '/../config/config.php'));
+    	$this->wsshead = $this->getWSSHeader($config->user, $config->pass, $config->client);
+        $client     = new \SoapClient($service);
+        $client->__setSoapHeaders($this->wsshead);
+        $response 	= $client->$call($query);
         return $response;
-    }    
+    }   
     
     public  function getWSSHeader($user, $pass, $client)
     {

@@ -3,7 +3,7 @@
 namespace Nickcheek\Atdconnect\Services;
 
 class Order {
-	use Nickcheek\Atdconnect\Traits;
+	use \Nickcheek\Atdconnect\Traits\ApiTrait;
 	
 	private $wsdl;
 
