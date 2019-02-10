@@ -27,7 +27,7 @@ Add the ATD credentials in config
 'client'=> 'client_name',
 'user'	=> 'your_username',
 'pass'	=> 'your_password',
-'location => 'your_location_id' 
+'location' => 'your_location_id' 
 ```
 
 set your location and declare your variables
