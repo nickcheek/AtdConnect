@@ -2,7 +2,11 @@
 
 namespace Nickcheek\Atdconnect;
 
+use Nickcheek\Atdconnect\Services\Brand;
 use Nickcheek\Atdconnect\Services\Location;
+use Nickcheek\Atdconnect\Services\Order;
+use Nickcheek\Atdconnect\Services\Product;
+use Nickcheek\Atdconnect\Services\Status;
 use Nickcheek\Atdconnect\Arraybuilder;
 
 class Atdconnect
@@ -46,9 +50,25 @@ class Atdconnect
 	    return $search->setSizeSearch($size);
     }
 
-    public function LocationService() {
-    return new Location;
-   }
+    public function Brand() {
+    	return new Brand;
+    }
+    
+    public function Location() {
+    	return new Location;
+    }
+    
+    public function Order() {
+    	return new Order;
+    }
+    
+    public function Product() {
+    	return new Product;
+    }
+    
+    public function Status() {
+    	return new Status;
+    }
 
     
     
