@@ -7,6 +7,7 @@ use Nickcheek\Atdconnect\Services\Location;
 use Nickcheek\Atdconnect\Services\Order;
 use Nickcheek\Atdconnect\Services\Product;
 use Nickcheek\Atdconnect\Services\Status;
+use Nickcheek\Atdconnect\Services\Vehicle;
 use Nickcheek\Atdconnect\Arraybuilder;
 
 class Atdconnect
@@ -69,17 +70,9 @@ class Atdconnect
     public function Status() {
     	return new Status;
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+	
+	public function Vehicle() {
+    	return new Vehicle;
+    }
     
 }
