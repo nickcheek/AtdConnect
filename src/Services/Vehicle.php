@@ -26,11 +26,8 @@ class Vehicle {
     {
     	$count = strlen($vin);
     	if($count == 17){
-	    	return new self($count);	
-    	} else {
-	    	return new self($count);
+	    	return new self();	
     	}
-        
     }
     
     public  function getVehicleYear()
@@ -124,5 +121,6 @@ class Vehicle {
 	    } catch (Exception $e) {return $e;}
 
     }
- 
+     
+
 }
