@@ -8,9 +8,8 @@ class Vehicle {
 	private $location;
 	private $wsdl;
 		
-	public $vehicleYear;
-	public $vehicleMake;
-	public $vehicleModel;
+	public $vin;
+	
 
 	public function __construct()
 	{
@@ -23,6 +22,16 @@ class Vehicle {
 	//************************************************
     //               Vehicle Service
     //************************************************
+    public static function countVIN(string $vin): self
+    {
+    	$count = strlen($vin);
+    	if($count == 17){
+	    	return new self($count);	
+    	} else {
+	    	return new self($count);
+    	}
+        
+    }
     
     public  function getVehicleYear()
     {
@@ -115,9 +124,5 @@ class Vehicle {
 	    } catch (Exception $e) {return $e;}
 
     }
-    
-    
-    
-        
-
+ 
 }
