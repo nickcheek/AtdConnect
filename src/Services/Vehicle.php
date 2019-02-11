@@ -7,9 +7,7 @@ class Vehicle {
 	
 	private $location;
 	private $wsdl;
-	
-	private $vehicle = array();
-	
+		
 	public $vehicleYear;
 	public $vehicleMake;
 	public $vehicleModel;
@@ -77,6 +75,47 @@ class Vehicle {
 	    } catch (Exception $e) {return $e;}
 	    
     }
+    
+    public function getProductByFitment($year,$make,$model,$trim,$option)
+    {
+	    try {if (empty($year)||empty($make)||empty($model)||empty($trim)||empty($option)) {throw new \Exception("A Vehicle value required has not been set.");}
+    	
+	    	return $this->apiCall('getProductByFitment',['locationNumber'=>$this->location,'vehicle' => ['year'=>$year,'make'=>$make,'model'=>$model,'trim'=>$trim,'trimOption'=>$option]],$this->wsdl);
+	    	
+	    } catch (Exception $e) {return $e;}
+
+    }
+    
+    public function getVehicleByVehicleId($vID)
+    {
+	    try {if (empty($vID)) {throw new \Exception("A Vehicle value required has not been set.");}
+    	
+	    	return $this->apiCall('getProductByFitment',['locationNumber'=>$this->location,'vehicle' => ['vehicleId'=>$vID]],$this->wsdl);
+	    	
+	    } catch (Exception $e) {return $e;}
+
+    }
+    
+    public function getVehicleByLicensePlate($num,$state)
+    {
+	    try {if (empty($num)||empty($state)) {throw new \Exception("A Vehicle value required has not been set.");}
+    	
+	    	return $this->apiCall('getVehicleByLicensePlate',['licensePlateNumber'=>$num,'licensePlateState' => $state],$this->wsdl);
+	    	
+	    } catch (Exception $e) {return $e;}
+
+    }
+	
+	public function getVehicleByVIN($vin)
+    {
+	    try {if (empty($vin)) {throw new \Exception("A Vehicle value required has not been set.");}
+    	
+	    	return $this->apiCall('getVehicleByVIN',['VIN'=>$vin],$this->wsdl);
+	    	
+	    } catch (Exception $e) {return $e;}
+
+    }
+    
     
     
         
