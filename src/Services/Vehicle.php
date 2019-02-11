@@ -22,10 +22,6 @@ class Vehicle {
 	//************************************************
     //               Vehicle Service
     //************************************************
-    public static function countVIN(string $vin): self
-    {
-    	return new self();	
-    }
     
     public  function getVehicleYear()
     {
