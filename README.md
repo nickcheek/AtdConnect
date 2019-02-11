@@ -73,7 +73,15 @@ previewOrder();
 getOrderDetail();
 getOrderStatusByCriteria();
 ```
-
+#### Vehicle
+``` php
+getVehicleYear();
+getVehicleMake($year);
+getVehicleModel($year,$make);
+getVehicleTrim($year,$make,$model);
+getVehicleTrimOptions($year,$make,$model,$trim);
+getVehiclePlusSizes($year,$make,$model,$trim);
+```
 ### Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
