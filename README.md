@@ -81,6 +81,11 @@ getVehicleModel($year,$make);
 getVehicleTrim($year,$make,$model);
 getVehicleTrimOptions($year,$make,$model,$trim);
 getVehiclePlusSizes($year,$make,$model,$trim);
+getProductByFitment($year,$make,$model,$trim,$option);
+getVehicleByVehicleId($vID);
+getVehicleByLicensePlate($num,$state);
+getVehicleByVIN($vin)
+
 ```
 ### Changelog
 
